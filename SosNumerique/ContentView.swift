@@ -12,21 +12,62 @@ import SwiftUI
 struct ContentView: View {
     @State private var searchText = ""
     
+    
    @State var courseList : [Courses] = [
-        Courses(name: "Télécharger des applications", description: "Ce cours explique comment on peut télécharger des applications sur les smartphones Android avec le Play store", video: "play.circle", category: [""], quizz: Quizz()),
-        Courses(name: "Se diriger avec Google Maps", description: "Ce cours explique comment on peut se diriger avec l’aide de l’application « Google Maps ».", video: "play.circle", category: [""], quizz: Quizz()),
-        Courses(name: "Traduire avec Google Traduction", description: "Ce cours explique comment traduire des texte dans la langue de son choix avec l’application « Google Traduction »", video: "play.circle", category: [""], quizz: Quizz())
-    ]
+    Courses(
+        name: "Télécharger des applications",
+        description: "Ce cours explique comment on peut télécharger des applications sur les smartphones Android avec le Play store",
+        video: "applications",
+        category: [""],
+        quizz: Quizz(),
+        commentList: [
+            Comment(
+                authorName: "LaRenarde36",
+                authorMessage: "Ce cours était clair et facile, merci.",
+                authorPhoto: Image("girl")),
+            Comment(
+                authorName: "Maria_76",
+                authorMessage: "Est-ce que c'est pareil sur un Iphone ?",
+                authorPhoto: Image("woman"))
+        ]),
+        Courses(
+            name: "Se diriger avec Google Maps",
+            description: "Ce cours explique comment on peut se diriger avec l’aide de l’application « Google Maps ».",
+            video: "maps",
+            category: [""],
+            quizz: Quizz(),
+            commentList: [
+                Comment(
+                    authorName: "Jeannette54",
+                    authorMessage: "Est-ce que ça fonctionne à l'étranger ou il n'y a que la carte de la France ?",
+                    authorPhoto: Image("oldlady")),
+                Comment(
+                    authorName: "Yvan_LeBeau",
+                    authorMessage: "Je ne trouve pas cette application sur mon Huawei",
+                    authorPhoto: Image("oldguy")),
+                Comment(
+                    authorName: "Johnny_Du_75",
+                    authorMessage: "Merci",
+                    authorPhoto: Image("guy"))
+            ]),
+        Courses(
+            name: "Traduire avec Google Traduction",
+            description: "Ce cours explique comment traduire des texte dans la langue de son choix avec l’application « Google Traduction »",
+            video: "translate",
+            category: [""],
+            quizz: Quizz()
+        )
+   ]
+    
+    
     //Les thèmes des cours
     var category : [String] = ["Sur mobile", "Sur ordinateur"]
     
-    
-    
-    
+
     var body: some View {
         NavigationView{
             VStack{
-                Text(" \(searchText)")
+                Text("")
                     .searchable(text: $searchText)
                 
                 TabView {
@@ -40,10 +81,10 @@ struct ContentView: View {
                 
                 List{
                     Section(header: Text("Les dernières leçon publiées")){
-                        ForEach(courseList) { list in
+                        ForEach(courseList) { course in
                             //connecter le navigation link avec le lessonDetailView
-                            NavigationLink(destination: LessonDetailView()){
-                                courseRow(minVideo: list.video, courseTitle: list.name, courseDescription: list.description)
+                            NavigationLink(destination: LessonDetailView(course: course)){
+                                courseRow(minVideo: course.video, courseTitle: course.name, courseDescription: course.description)
                             }
                         }
                         
@@ -54,14 +95,13 @@ struct ContentView: View {
                         Link("INSEE.FR", destination: URL(string:"https://www.insee.fr/fr/statistiques/4241397")!)
                     }
                 }
-                
                 .navigationTitle("Accueil")
-                
             }
             
         }
         
     }
+    
 }
 
 
@@ -94,8 +134,6 @@ struct Quizz {
         ]
 }
 
-    
-
 
 struct Courses: Identifiable {
         var id = UUID()
@@ -104,18 +142,20 @@ struct Courses: Identifiable {
         var video : String
         var category : [String]
         var quizz : Quizz
-        //var comments : Comment
+        var commentList : [Comment]?
+        var favorite : [Courses] = []
 }
 
 
 
-//struct Comment{
-//    var authorName: String
-//    var authorMessage: String
-//    var authorPhoto : Image
+struct Comment: Identifiable {
+    var id = UUID()
+    var authorName: String
+    var authorMessage: String
+    var authorPhoto : Image
     //var reply : [CommentReply]
     
-//}
+}
 
 //struct CommentReply{
 //    var replyMessage: String
@@ -131,8 +171,12 @@ struct courseRow: View {
     var courseDescription : String
     var body: some View {
         HStack{
-            Image(systemName: minVideo)
-                .padding(.trailing)
+            Image(minVideo)
+                .resizable()
+                .clipShape(Rectangle())
+                .frame(width:60,height:55)
+                    
+                    
             VStack(alignment: .leading) {
                 Text(courseTitle).font(.headline).lineLimit(1)
                 Text(courseDescription).font(.subheadline).lineLimit(2)

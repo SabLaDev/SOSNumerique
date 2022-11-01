@@ -13,6 +13,14 @@
 		875A387D29091640003D0AB3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 875A387C29091640003D0AB3 /* Preview Assets.xcassets */; };
 		875A388629095850003D0AB3 /* LessonDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875A388529095850003D0AB3 /* LessonDetailView.swift */; };
 		875A3888290AA9D5003D0AB3 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875A3887290AA9D5003D0AB3 /* QuizView.swift */; };
+		87F91E7A290BF8D700A3E3E4 /* LessonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F91E79290BF8D700A3E3E4 /* LessonListView.swift */; };
+		87F91E7E290BFB8F00A3E3E4 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F91E7D290BFB8F00A3E3E4 /* UserProfileView.swift */; };
+		87F91E86290FD40800A3E3E4 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F91E85290FD40800A3E3E4 /* NavigationView.swift */; };
+		87F91E8829101A5900A3E3E4 /* CardsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F91E8729101A5900A3E3E4 /* CardsContentView.swift */; };
+		87F91E8A2911702D00A3E3E4 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F91E892911702D00A3E3E4 /* MapView.swift */; };
+		87F91E8E2911718A00A3E3E4 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F91E8D2911718A00A3E3E4 /* EditView.swift */; };
+		87F91E90291171CE00A3E3E4 /* ButtonCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F91E8F291171CE00A3E3E4 /* ButtonCollection.swift */; };
+		87F91E922911761300A3E3E4 /* PinButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F91E912911761300A3E3E4 /* PinButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +31,14 @@
 		875A387C29091640003D0AB3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		875A388529095850003D0AB3 /* LessonDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDetailView.swift; sourceTree = "<group>"; };
 		875A3887290AA9D5003D0AB3 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
+		87F91E79290BF8D700A3E3E4 /* LessonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonListView.swift; sourceTree = "<group>"; };
+		87F91E7D290BFB8F00A3E3E4 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		87F91E85290FD40800A3E3E4 /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
+		87F91E8729101A5900A3E3E4 /* CardsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsContentView.swift; sourceTree = "<group>"; };
+		87F91E892911702D00A3E3E4 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		87F91E8D2911718A00A3E3E4 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		87F91E8F291171CE00A3E3E4 /* ButtonCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCollection.swift; sourceTree = "<group>"; };
+		87F91E912911761300A3E3E4 /* PinButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +72,17 @@
 			isa = PBXGroup;
 			children = (
 				875A38752909163F003D0AB3 /* SosNumeriqueApp.swift */,
+				87F91E85290FD40800A3E3E4 /* NavigationView.swift */,
 				875A38772909163F003D0AB3 /* ContentView.swift */,
+				87F91E7D290BFB8F00A3E3E4 /* UserProfileView.swift */,
 				875A388529095850003D0AB3 /* LessonDetailView.swift */,
+				87F91E79290BF8D700A3E3E4 /* LessonListView.swift */,
 				875A3887290AA9D5003D0AB3 /* QuizView.swift */,
+				87F91E892911702D00A3E3E4 /* MapView.swift */,
+				87F91E912911761300A3E3E4 /* PinButtonView.swift */,
+				87F91E8D2911718A00A3E3E4 /* EditView.swift */,
+				87F91E8F291171CE00A3E3E4 /* ButtonCollection.swift */,
+				87F91E8729101A5900A3E3E4 /* CardsContentView.swift */,
 				875A387929091640003D0AB3 /* Assets.xcassets */,
 				875A387B29091640003D0AB3 /* Preview Content */,
 			);
@@ -144,8 +168,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				875A388629095850003D0AB3 /* LessonDetailView.swift in Sources */,
+				87F91E86290FD40800A3E3E4 /* NavigationView.swift in Sources */,
+				87F91E8E2911718A00A3E3E4 /* EditView.swift in Sources */,
 				875A3888290AA9D5003D0AB3 /* QuizView.swift in Sources */,
+				87F91E922911761300A3E3E4 /* PinButtonView.swift in Sources */,
+				87F91E7E290BFB8F00A3E3E4 /* UserProfileView.swift in Sources */,
+				87F91E8829101A5900A3E3E4 /* CardsContentView.swift in Sources */,
 				875A38782909163F003D0AB3 /* ContentView.swift in Sources */,
+				87F91E7A290BF8D700A3E3E4 /* LessonListView.swift in Sources */,
+				87F91E90291171CE00A3E3E4 /* ButtonCollection.swift in Sources */,
+				87F91E8A2911702D00A3E3E4 /* MapView.swift in Sources */,
 				875A38762909163F003D0AB3 /* SosNumeriqueApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

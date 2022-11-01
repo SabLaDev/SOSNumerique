@@ -6,36 +6,53 @@
 //
 
 import SwiftUI
+//to view pdf file
+import PDFKit
 //to play video
 //import AVKit
 
+import WebKit
+
 struct ContentView: View {
+    
+    //Texte recherché dans la barre de recherche
     @State private var searchText = ""
     
-    
+    //Liste de tous les cours
    @State var courseList : [Courses] = [
     Courses(
         name: "Télécharger des applications",
         description: "Ce cours explique comment on peut télécharger des applications sur les smartphones Android avec le Play store",
-        video: "applications",
-        category: [""],
+        video: Video(videoID: ""),
+        category: ["Sur ordinateur"],
         quizz: Quizz(),
         commentList: [
             Comment(
                 authorName: "LaRenarde36",
                 authorMessage: "Ce cours était clair et facile, merci.",
-                authorPhoto: Image("girl")),
+                authorPhoto: Image("girl")
+                
+            ),
             Comment(
                 authorName: "Maria_76",
                 authorMessage: "Est-ce que c'est pareil sur un Iphone ?",
-                authorPhoto: Image("woman"))
-        ]),
+                authorPhoto: Image("woman")
+                )
+        ],
+        isFavorite: true),
         Courses(
-            name: "Se diriger avec Google Maps",
-            description: "Ce cours explique comment on peut se diriger avec l’aide de l’application « Google Maps ».",
-            video: "maps",
-            category: [""],
-            quizz: Quizz(),
+            name: "Explorez & rédigez des avis dans Google Maps",
+            description: "Ce cours explique comment on peut se diriger avec l’aide de l’application « Google Maps » et laisser des avis.",
+            video: Video(videoID: "MN1fASZ9tKg"),
+            category: ["Sur mobile"],
+            quizz: Quizz(questions: [
+                 "Il est possible d'attribuer une note à un établissement ":" Vrai",
+                 "Il est possible d'enregistrer son historique de recherche":" Vrai",
+                 "Il n'est pas possible de filtrer les recherches ":"Faux",
+                 "Google Map, utilise la géolocalisation ":" Vrai",
+                 "Il n'est pas possible de laisser un commentaire à un établissement":"Faux"
+                
+            ]),
             commentList: [
                 Comment(
                     authorName: "Jeannette54",
@@ -49,57 +66,81 @@ struct ContentView: View {
                     authorName: "Johnny_Du_75",
                     authorMessage: "Merci",
                     authorPhoto: Image("guy"))
-            ]),
+            ],
+        isFavorite: false),
         Courses(
             name: "Traduire avec Google Traduction",
-            description: "Ce cours explique comment traduire des texte dans la langue de son choix avec l’application « Google Traduction »",
-            video: "translate",
-            category: [""],
-            quizz: Quizz()
+            description: "Ce cours explique comment traduire du texte avec l’application « Google Traduction » et l'appareil photo de son smartphone",
+            video: Video(videoID: "5aa0fo9QcZw"),
+            category: ["Sur mobile"],
+            quizz: Quizz(
+            questions: [
+                "On peut utiliser l'appareil photo pour traduire ":"Vrai",
+                "Internet n'est pas obligatoire pour l'utiliser":"Faux",
+                "Il traduit dans toutes les langues ":"Faux",
+                "C'est un outil difficile à utiliser":"Faux"
+                
+            ]),
+            isFavorite: true
         )
    ]
     
     
-    //Les thèmes des cours
+    //Les thèmes des cours pour un éventuel filtre
     var category : [String] = ["Sur mobile", "Sur ordinateur"]
     
 
     var body: some View {
-        NavigationView{
-            VStack{
-                Text("")
-                    .searchable(text: $searchText)
-                
+        NavigationView {
+            //Caroussel
+            VStack {
+                Text("Les dernières infos🔥").font(.headline)
                 TabView {
-                    Image("img6").resizable().scaledToFit()
-                    Image("img10").resizable().scaledToFit()
-                    Image("img11").resizable().scaledToFit()
-                    Image("img7").resizable().scaledToFit()
+                    Video(videoID: "iN5fG-tbxck")
+                                        
+                    Link(destination: URL(string: "https://www.insee.fr/fr/statistiques/4241397")!) {
+                        Image("insee_data")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    
+                    Link(destination: URL(string: "https://www.petitsfreresdespauvres.fr/media/332/download/2018_10_01_Rapport_exclusion_numerique_personnes_agees_pfP.pdf?v=2&inline=1")!) {
+                        Image("rapportExclusionNum")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    
                 }
+                .frame(height:200)
                 .tabViewStyle(.page)
                 .indexViewStyle(.page(backgroundDisplayMode: .always))
                 
+                //Liste des 3 dernières applications ajoutées
                 List{
-                    Section(header: Text("Les dernières leçon publiées")){
+                    Section(header: Text("Les dernières leçons publiées")){
                         ForEach(courseList) { course in
                             //connecter le navigation link avec le lessonDetailView
                             NavigationLink(destination: LessonDetailView(course: course)){
                                 courseRow(minVideo: course.video, courseTitle: course.name, courseDescription: course.description)
                             }
                         }
-                        
                     }
                     
+                    //les liens
                     Section(header: Text("Informations sur l'exclusion numérique")){
                         Link("Emmaüs Connect", destination: URL(string:"https://emmaus-connect.org/exclusion-numerique/")!)
+                        Link("Petits frères des pauvres", destination: URL(string:"https://www.petitsfreresdespauvres.fr/informer/prises-de-positions/contre-l-exclusion-numerique-de-4-millions-de-personnes-agees")!)
                         Link("INSEE.FR", destination: URL(string:"https://www.insee.fr/fr/statistiques/4241397")!)
                     }
                 }
+                
                 .navigationTitle("Accueil")
             }
+            .searchable(text: $searchText, prompt: "Recherche")
+            
             
         }
-        
+
     }
     
 }
@@ -110,18 +151,6 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-
-struct LastNews{
-    var fourLastCourses : [String]
-    
-    func addTheLastCourses(){
-        
-            for index in 0...3{
-                print(index)
-            }
-        }
-      
-    }
 
 //Quizz qui se trouve après la vidéo pour vérifier la compréhension de l'utilisateur
 struct Quizz {
@@ -134,18 +163,16 @@ struct Quizz {
         ]
 }
 
-
 struct Courses: Identifiable {
         var id = UUID()
         var name : String
         var description : String
-        var video : String
+        var video : Video
         var category : [String]
         var quizz : Quizz
         var commentList : [Comment]?
-        var favorite : [Courses] = []
+        var isFavorite : Bool = false
 }
-
 
 
 struct Comment: Identifiable {
@@ -153,26 +180,15 @@ struct Comment: Identifiable {
     var authorName: String
     var authorMessage: String
     var authorPhoto : Image
-    //var reply : [CommentReply]
-    
 }
 
-//struct CommentReply{
-//    var replyMessage: String
-//    var replayImage: String
-//    func numberOfReply(){
-//        // compte le nombre de réponses et les affiche en haut à droite de l'image
-//    }
-//}
-
 struct courseRow: View {
-    var minVideo : String
+    var minVideo : Video
     var courseTitle : String
     var courseDescription : String
     var body: some View {
         HStack{
-            Image(minVideo)
-                .resizable()
+            minVideo
                 .clipShape(Rectangle())
                 .frame(width:60,height:55)
                     
@@ -185,3 +201,21 @@ struct courseRow: View {
         }
     }
 }
+
+struct  Video: UIViewRepresentable {
+
+    let videoID: String
+
+    func makeUIView(context: Context) -> WKWebView {
+        return WKWebView()
+    }
+
+    func updateUIView(_ uiView: WKWebView, context: Context) {
+        guard let youtubeURL =  URL(string: "https://www.youtube.com/embed/\(videoID)") else {return}
+        uiView.scrollView.isScrollEnabled = false
+        uiView.load(URLRequest(url: youtubeURL))
+    }
+
+}
+
+

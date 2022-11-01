@@ -11,7 +11,7 @@ import SwiftUI
 struct SosNumeriqueApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MyNavigationView()
         }
     }
 }

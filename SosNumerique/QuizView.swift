@@ -34,10 +34,11 @@ struct QuizView: View {
                         VStack(alignment: .center, spacing: 6) {
                             
                             if(i < course.quizz.questions.count){
+                                HStack{
+                                    Spacer()
                                 Text("Question \(i)/ \(course.quizz.questions.count)")
-                                
-                                Text("\(course.quizz.questions.keys[course.quizz.questions.keys.index(course.quizz.questions.startIndex, offsetBy: i)])")
-                                    .font(.subheadline)
+                                }
+                                Text("🤔\n\(course.quizz.questions.keys[course.quizz.questions.keys.index(course.quizz.questions.startIndex, offsetBy: i)])")
                                     .multilineTextAlignment(.center)
                                     .bold()
                                     .padding()
@@ -67,9 +68,10 @@ struct QuizView: View {
                                         
                                         
                                     } label: {
-                                        Image(systemName: "checkmark.circle.fill")
+                                        Label("Vrai", systemImage: "checkmark.circle.fill")
                                             .foregroundColor(.green)
-                                            .font(.system(size: 50))
+                                            .font(.system(size: 30))
+                                        
                                     }
                                     
                                     Spacer()
@@ -83,7 +85,7 @@ struct QuizView: View {
                                             }
                                             
                                         } else{
-                                            if(score > -5){
+                                            if(score > 0){
                                                 score -= 1
                                             }
                                         }
@@ -94,21 +96,26 @@ struct QuizView: View {
                                         }
                                         
                                     } label: {
-                                        Image(systemName: "x.circle.fill")
+                                        Label("Faux", systemImage: "x.circle.fill")
                                             .foregroundColor(.red)
-                                            .font(.system(size: 50))
+                                            .font(.system(size: 30))
+                                    
                                     }
                                     
                                 }
                                 //Ajouter le nombre de points de l'utilisateur incrémenter par les bonne réponses et décrémenter par les mauvaises
-                                Text("\(score) points")
+                                //Text("\(score) points")
                                 //Ajouter le numéro de la question actuelle sur le nombre total de questions
                                 
                             }else if (score < score/course.quizz.questions.count || score <= 0) {
-                                Text("😖Olala, votre score est de \(score) points. Regarder à nouveau la vidéo.")
+                                Text("😖Olala, votre score est de \(score) / \(course.quizz.questions.count) points. Regarder à nouveau la vidéo.")
+                                    .foregroundColor(.red)
+                                    .multilineTextAlignment(.center)
                                 
                             }else {
-                                Text("🥳 Bravo vous avez résussi avec un score de \(score) points")
+                                Text("🥳 Bravo vous avez réussi avec un score de \(score) / \(course.quizz.questions.count) points.")
+                                    .foregroundColor(.green)
+                                    .multilineTextAlignment(.center)
                                 
                             }
                             

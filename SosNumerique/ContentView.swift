@@ -6,11 +6,8 @@
 //
 
 import SwiftUI
-//to view pdf file
-import PDFKit
-//to play video
-//import AVKit
 
+//Pour importer une vidéo Youtube
 import WebKit
 
 struct ContentView: View {
@@ -23,9 +20,12 @@ struct ContentView: View {
     Courses(
         name: "Télécharger des applications",
         description: "Ce cours explique comment on peut télécharger des applications sur les smartphones Android avec le Play store",
-        video: Video(videoID: ""),
+        video: Video(videoID: "PcPqI6l6MT8"),
         category: ["Sur ordinateur"],
-        quizz: Quizz(questions: ["":""], img: Image("applications")),
+        quizz: Quizz(questions: ["Il faut avoir un compte Google":"Vrai",
+                                 "On peut trouver des avis d'autres utilisateurs pour les applications sur le playstore":"Vrai",
+                                 "Si l'application fait plus de 100 octets, il n'est pas recommander d'utiliser son Wi-Fi": "Faux",
+                                "Il existe des applications pour tout" : "Vrai"], img: Image("applications")),
         commentList: [
             Comment(
                 authorName: "LaRenarde36",
@@ -137,7 +137,7 @@ struct ContentView: View {
                     }
                 }
                 
-                .navigationTitle("Accueil")
+                .navigationTitle("Leçons")
             }
         }
 

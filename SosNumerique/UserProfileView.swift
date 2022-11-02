@@ -16,10 +16,10 @@ import Charts
   }
 
 var data: [Amount] = [
-    .init(month: "avril", amount: 10),
-    .init(month: "mais", amount: 5),
-    .init(month: "june", amount: 15),
-    .init(month: "juillet", amount: 20),
+    .init(month: "Avril", amount: 10),
+    .init(month: "Mai", amount: 5),
+    .init(month: "Juin", amount: 15),
+    .init(month: "Juillet", amount: 20),
 ]
 
 struct UserProfileView: View {
@@ -33,8 +33,6 @@ struct UserProfileView: View {
     @State var adresseEmail:String = "MarMax@gmail.com"
     @State var photoDeprofil:Image = Image ("test-1")
     
-    var favorite : [Courses] = []
- 
      
     var body: some View {
         NavigationView{
@@ -64,17 +62,22 @@ struct UserProfileView: View {
                     //Les cours
                     Section(header:Text("Les cours")){
                         Section(header:Text("Favoris")){
-                            favoriteRow()
-                            }
+                            HStack{
+                                favoriteRow(minVideo: Video(videoID: "MN1fASZ9tKg") , courseTitle: "Explorez & rédigez des avis dans Google Maps" )
+                                favoriteRow(minVideo: Video(videoID: "5aa0fo9QcZw") , courseTitle: "Traduire avec Google Traduction" )
+                            }.foregroundStyle(.secondary)
+                           
+                        }
                         Section(header:Text("En cours")){
                             HStack{
-                                favoriteRow()
-                                favoriteRow()
+                                favoriteRow(minVideo: Video(videoID: "5aa0fo9QcZw") , courseTitle: "Traduire avec Google Traduction" )
+                                
                             }.foregroundStyle(.secondary)
                         }
                         Section(header:Text("Derniers cours")){
                             HStack{
-                                favoriteRow()
+                                favoriteRow(minVideo: Video(videoID: "5aa0fo9QcZw") , courseTitle: "Traduire avec Google Traduction" )
+                               
                             }.foregroundStyle(.secondary)
                         }
                     }
@@ -105,28 +108,29 @@ struct UserProfileView: View {
     }
 }
 
-struct UserProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        UserProfileView(course:Courses(
-            name: "Télécharger des applications",
-            description: "Ce cours explique comment on peut télécharger des applications sur les smartphones Android avec le Play store",
-
-            video: Video(videoID: ""),
-            category: [""],
-            quizz: Quizz()))
-    }
-}
-
 struct favoriteRow: View {
+    var minVideo : Video
+    var courseTitle : String
     var body: some View {
-        let video = Video(videoID: "")
-        let name : String = "Nom du cours"
         VStack{
-            video
+            minVideo
                 .clipShape(Rectangle())
                 .frame(width:60,height:55)
                 
-            Text("\(name)").multilineTextAlignment(.leading)
+            Text("\(courseTitle)").multilineTextAlignment(.leading)
         }.foregroundStyle(.secondary)
     }
 }
+
+struct UserProfileView_Previews: PreviewProvider {
+    static var previews: some View {
+        UserProfileView(course:Courses(
+            name: "",
+            description: "",
+            video: Video(videoID: ""),
+            category: [""],
+            quizz: Quizz(questions: ["":""], img: Image(""))))
+    }
+}
+
+

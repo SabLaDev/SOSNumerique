@@ -25,7 +25,7 @@ struct ContentView: View {
         description: "Ce cours explique comment on peut télécharger des applications sur les smartphones Android avec le Play store",
         video: Video(videoID: ""),
         category: ["Sur ordinateur"],
-        quizz: Quizz(),
+        quizz: Quizz(questions: ["":""], img: Image("applications")),
         commentList: [
             Comment(
                 authorName: "LaRenarde36",
@@ -39,20 +39,20 @@ struct ContentView: View {
                 authorPhoto: Image("woman")
                 )
         ],
-        isFavorite: true),
+        isFavorite: false),
         Courses(
             name: "Explorez & rédigez des avis dans Google Maps",
             description: "Ce cours explique comment on peut se diriger avec l’aide de l’application « Google Maps » et laisser des avis.",
             video: Video(videoID: "MN1fASZ9tKg"),
             category: ["Sur mobile"],
             quizz: Quizz(questions: [
-                 "Il est possible d'attribuer une note à un établissement ":" Vrai",
-                 "Il est possible d'enregistrer son historique de recherche":" Vrai",
+                 "Il est possible d'attribuer une note à un établissement ":"Vrai",
+                 "Il est possible d'enregistrer son historique de recherche":"Vrai",
                  "Il n'est pas possible de filtrer les recherches ":"Faux",
-                 "Google Map, utilise la géolocalisation ":" Vrai",
+                 "Google Map, utilise la géolocalisation ":"Vrai",
                  "Il n'est pas possible de laisser un commentaire à un établissement":"Faux"
                 
-            ]),
+            ], img: Image("maps")),
             commentList: [
                 Comment(
                     authorName: "Jeannette54",
@@ -67,7 +67,7 @@ struct ContentView: View {
                     authorMessage: "Merci",
                     authorPhoto: Image("guy"))
             ],
-        isFavorite: false),
+        isFavorite: true),
         Courses(
             name: "Traduire avec Google Traduction",
             description: "Ce cours explique comment traduire du texte avec l’application « Google Traduction » et l'appareil photo de son smartphone",
@@ -80,11 +80,10 @@ struct ContentView: View {
                 "Il traduit dans toutes les langues ":"Faux",
                 "C'est un outil difficile à utiliser":"Faux"
                 
-            ]),
+            ], img: Image("translate")),
             isFavorite: true
         )
    ]
-    
     
     //Les thèmes des cours pour un éventuel filtre
     var category : [String] = ["Sur mobile", "Sur ordinateur"]
@@ -125,6 +124,10 @@ struct ContentView: View {
                             }
                         }
                     }
+                    //Toutes les leçons
+                    Section(header: Text("Toutes les leçons")){
+                       NavigationLink("Toutes les leçons", destination: LessonListView())
+                    }
                     
                     //les liens
                     Section(header: Text("Informations sur l'exclusion numérique")){
@@ -136,9 +139,6 @@ struct ContentView: View {
                 
                 .navigationTitle("Accueil")
             }
-            .searchable(text: $searchText, prompt: "Recherche")
-            
-            
         }
 
     }
@@ -154,13 +154,8 @@ struct ContentView_Previews: PreviewProvider {
 
 //Quizz qui se trouve après la vidéo pour vérifier la compréhension de l'utilisateur
 struct Quizz {
-    var questions : [String:String] = [
-        "Question1" : "Réponse1",
-        "Question2" : "Réponse2",
-        "Question3" : "Réponse3",
-        "Question4" : "Réponse4",
-        "Question5" : "Réponse5"
-        ]
+    var questions : [String:String]
+    var img : Image
 }
 
 struct Courses: Identifiable {

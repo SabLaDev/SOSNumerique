@@ -22,7 +22,7 @@ struct MyNavigationView: View {
                     Label("Carte", systemImage: "map.fill")
                         
                 }
-                    UserProfileView(course: Courses(name: "", description: "", video: Video(videoID: ""), category: [""], quizz: Quizz()))
+            UserProfileView(course: Courses(name: "", description: "", video: Video(videoID: ""), category: [""], quizz: Quizz(questions: ["":""], img: Image(""))))
                     .tabItem{
     
                         Label("Profil", systemImage: "person.fill")

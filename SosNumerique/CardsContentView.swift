@@ -66,7 +66,7 @@ struct CardsContentView: View {
                     VStack {
                         ZStack {
                             ForEach(self.quiz, id: \.self) { user in
-                                QuizView(isChecked: false)
+                                QuizView(userAnswer: "", course: Courses(name: "", description: "", video: Video(videoID: ""), category: [""], quizz: Quizz(questions: ["":""], img: Image(""))))
                                     .frame(width: self.getCardWidth(geometry, id: user.id), height: 400)
                                     .offset(x: 0, y: self.getCardOffset(geometry, id: user.id))
                             }

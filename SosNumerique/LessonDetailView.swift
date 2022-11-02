@@ -25,7 +25,7 @@ struct LessonDetailView: View {
     var body: some View {
         
         VStack {
-            HStack {
+            HStack(alignment: .center) {
                 Text(course.name)
                     .font(.system(size: 25))
                     .foregroundColor(.black)
@@ -105,13 +105,7 @@ struct LessonDetailView: View {
                 Section(header:Text("Quizz du cours")
                     .foregroundColor(.black))
                 {
-                    
-                    Text("Qu'est-ce que vous avez retenu?🤔")
-                        .font(.subheadline)
-                        .bold()
-                        .foregroundColor(.blue)
-                    Text("")
-                    
+                    NavigationLink("Qu'avez-vous retenu?🤔", destination: QuizView(userAnswer: "", course: course))
                     
                 }.headerProminence(.increased)
             }
@@ -130,7 +124,7 @@ struct LessonDetailView_Previews: PreviewProvider {
                 description: "Ce cours explique comment on peut télécharger des applications sur les smartphones Android avec le Play store",
                 video: Video(videoID: ""),
                 category: [""],
-                quizz: Quizz(),
+                quizz: Quizz(questions: ["":""], img: Image("applications")),
                 commentList: [
                     Comment(
                         authorName: "LaRenarde36",

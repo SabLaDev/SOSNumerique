@@ -12,22 +12,22 @@ struct MyNavigationView: View {
         TabView{
             ContentView()
                 .tabItem{
-                
+                    
                     Label("Leçons", systemImage: "graduationcap.fill")
                     
                 }
-                    MapView()
-                    .tabItem{
+            MapView()
+                .tabItem{
                     
                     Label("Carte", systemImage: "map.fill")
-                        
+                    
                 }
             UserProfileView(course: Courses(name: "", description: "", video: Video(videoID: ""), category: [""], quizz: Quizz(questions: ["":""], img: Image(""))))
-                    .tabItem{
-    
-                        Label("Profil", systemImage: "person.fill")
-                        
-                    }
+                .tabItem{
+                    
+                    Label("Profil", systemImage: "person.fill")
+                    
+                }
         }
     }
 }

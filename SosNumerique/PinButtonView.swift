@@ -29,7 +29,7 @@ struct PinButtonView: View {
         }
         .sheet(isPresented: $showingEditScreen,
                content: {
-            EditView(pin: pin, button2: MyButtons2(image: "", legende: ""))
+            EditView(pin: pin, button2: MyButtons2(image: ""))
                })
     
     }

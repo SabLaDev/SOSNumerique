@@ -9,11 +9,11 @@ import SwiftUI
 
 import Charts
 
-  struct Amount: Identifiable {
-      var month: String
-      var amount: Double
-      var id = UUID()
-  }
+struct Amount: Identifiable {
+    var month: String
+    var amount: Double
+    var id = UUID()
+}
 
 var data: [Amount] = [
     .init(month: "Avril", amount: 10),
@@ -33,19 +33,19 @@ struct UserProfileView: View {
     @State var adresseEmail:String = "MarMax@gmail.com"
     @State var photoDeprofil:Image = Image ("test-1")
     
-     
+    
     var body: some View {
         NavigationView{
-    
+            
             VStack {
                 HStack{
                     Text("").multilineTextAlignment(.trailing).toolbar{
-                    ToolbarItem(placement: .navigationBarTrailing){
-                    Image("test-1")
-                        .resizable()
-                        .clipShape(Circle())
-                        .scaledToFit()
-                        .frame(height:100)
+                        ToolbarItem(placement: .navigationBarTrailing){
+                            Image("test-1")
+                                .resizable()
+                                .clipShape(Circle())
+                                .scaledToFit()
+                                .frame(height:100)
                         }
                     }
                 }
@@ -66,7 +66,7 @@ struct UserProfileView: View {
                                 favoriteRow(minVideo: Video(videoID: "MN1fASZ9tKg") , courseTitle: "Explorez & rédigez des avis dans Google Maps" )
                                 favoriteRow(minVideo: Video(videoID: "5aa0fo9QcZw") , courseTitle: "Traduire avec Google Traduction" )
                             }.foregroundStyle(.secondary)
-                           
+                            
                         }
                         Section(header:Text("En cours")){
                             HStack{
@@ -77,7 +77,7 @@ struct UserProfileView: View {
                         Section(header:Text("Derniers cours")){
                             HStack{
                                 favoriteRow(minVideo: Video(videoID: "5aa0fo9QcZw") , courseTitle: "Traduire avec Google Traduction" )
-                               
+                                
                             }.foregroundStyle(.secondary)
                         }
                     }
@@ -92,17 +92,17 @@ struct UserProfileView: View {
                             BarMark(
                                 x: .value("month", shape.month),
                                 y: .value("Value", shape.amount)
-                              //choix des couleurs
+                                //choix des couleurs
                             ).foregroundStyle(.yellow)
                             
                             //taille du graphique
                         }.frame(width: 300, height: 200)
-                         .multilineTextAlignment(.leading)
-                        }
+                            .multilineTextAlignment(.leading)
+                    }
                     
-            }
-            .navigationTitle("Profile")
-            
+                }
+                .navigationTitle("Profile")
+                
             }
         }
     }
@@ -116,7 +116,7 @@ struct favoriteRow: View {
             minVideo
                 .clipShape(Rectangle())
                 .frame(width:60,height:55)
-                
+            
             Text("\(courseTitle)").multilineTextAlignment(.leading)
         }.foregroundStyle(.secondary)
     }

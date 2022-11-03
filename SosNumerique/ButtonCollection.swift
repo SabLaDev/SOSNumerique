@@ -12,8 +12,6 @@ struct ButtonCollection: View {
         HStack{
             MyButtons(image: "figure.walk", legende: "5min")
             MyButtons(image: "phone.fill", legende: "Appeler")
-                
-            
             MyButtons(image: "safari", legende: "Site Web")
             MyButtons(image: "play.circle", legende: "Plus")
         }
@@ -50,7 +48,7 @@ struct MyButtons: View {
 struct MyButtons2: View {
     
     var image : String
-    var legende : String
+  
     
     var body: some View {
         Button(action: {

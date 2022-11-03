@@ -12,9 +12,10 @@ struct QuizView: View {
     @State var userAnswer : String
     @State var i : Int = 0
     @State var score : Int = 0
-        
+    @State var result = Text("")
+    
     var course : Courses
-
+    
     
     
     @State private var translation: CGSize = .zero
@@ -36,7 +37,7 @@ struct QuizView: View {
                             if(i < course.quizz.questions.count){
                                 HStack{
                                     Spacer()
-                                Text("Question \(i)/ \(course.quizz.questions.count)")
+                                    Text("Question \(i)/ \(course.quizz.questions.count)")
                                 }
                                 Text("🤔\n\(course.quizz.questions.keys[course.quizz.questions.keys.index(course.quizz.questions.startIndex, offsetBy: i)])")
                                     .multilineTextAlignment(.center)
@@ -53,12 +54,23 @@ struct QuizView: View {
                                         ){
                                             
                                             if(score < course.quizz.questions.count){
+                                                
                                                 score += 1
+                                                result =  Text("Bien joué 👍")
+                                                    .foregroundColor(.green)
+                                                
+                                                
                                             }
                                             
                                         } else {
-                                            if(score > -5){
+                                            if(score > 0){
+                                                
                                                 score -= 1
+                                                result = Text("Râté ☹️")
+                                                    .foregroundColor(.red)
+                                                
+                                                
+                                                
                                             }
                                         }
                                         //appelle la question suivante
@@ -81,12 +93,20 @@ struct QuizView: View {
                                         if(userAnswer == (course.quizz.questions.values[course.quizz.questions.values.index(course.quizz.questions.startIndex, offsetBy: i)])
                                         ){
                                             if(score < course.quizz.questions.count){
+                                                
                                                 score += 1
+                                                result =  Text("Bien joué 👍")
+                                                    .foregroundColor(.green)
+       
                                             }
                                             
                                         } else{
                                             if(score > 0){
+                                                
                                                 score -= 1
+                                                result = Text("Râté ☹️")
+                                                    .foregroundColor(.red)
+
                                             }
                                         }
                                         //Appelle la question suivante
@@ -99,18 +119,26 @@ struct QuizView: View {
                                         Label("Faux", systemImage: "x.circle.fill")
                                             .foregroundColor(.red)
                                             .font(.system(size: 30))
-                                    
+                                        
                                     }
                                     
                                 }
                                 //Ajouter le nombre de points de l'utilisateur incrémenter par les bonne réponses et décrémenter par les mauvaises
-                                //Text("\(score) points")
+                                
+                                
+                                
+                                //Text("\(score)")
+                                result
+                                
+                                
+                                
                                 //Ajouter le numéro de la question actuelle sur le nombre total de questions
                                 
-                            }else if (score < score/course.quizz.questions.count || score <= 0) {
+                            }else if (score < 2 || score <= 0) {
                                 Text("😖Olala, votre score est de \(score) / \(course.quizz.questions.count) points. Regarder à nouveau la vidéo.")
-                                    .foregroundColor(.red)
                                     .multilineTextAlignment(.center)
+                                    .foregroundColor(.red)
+                                
                                 
                             }else {
                                 Text("🥳 Bravo vous avez réussi avec un score de \(score) / \(course.quizz.questions.count) points.")

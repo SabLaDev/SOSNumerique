@@ -51,7 +51,6 @@ struct LessonDetailView: View {
                 }
                 
             }
-       
             
             VStack(spacing: 3){
                 course.video
@@ -76,10 +75,7 @@ struct LessonDetailView: View {
                         }
                     }
                 }
-                
-                
             }
-            
             
             List{
                 Section(header:Text("Description")
@@ -106,10 +102,10 @@ struct LessonDetailView: View {
                     .foregroundColor(.black))
                 {
                     NavigationLink("Qu'avez-vous retenu?🤔", destination: QuizView(userAnswer: "", course: course))
+                        .foregroundColor(.orange)
                     
                 }.headerProminence(.increased)
             }
-            //.listStyle(.insetGrouped)
         }
         
     }
@@ -144,12 +140,6 @@ struct CommentLine: View {
     var photo : Image = Image("")
     var comment : String = ""
     var author: String = ""
-    //var replyImg = Image(systemName: "message")
-    //var reply : [Comment]
-    //var countReply : Int = 0
-    @State private var isOpen : Bool = false
-    @State private var newComment = "👍"
-    //var hasReply : Bool = false
     
     var body: some View {
         

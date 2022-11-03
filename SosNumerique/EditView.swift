@@ -16,19 +16,35 @@ struct EditView: View {
     
     var body: some View {
         NavigationView {
-            Form {
-                button2
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                
-                    TextField("Place name", text: $pin.name)
-
-                    TextField("Description", text: $pin.description)
-                    ButtonCollection()
-                    .frame(maxWidth: .infinity, alignment: .center)
-
-                Text(pin.detail)
-            }
-            .navigationTitle("Carte")
+            VStack(alignment: .leading){
+                HStack {
+                    Spacer()
+                    Rectangle()
+                        .frame(width:100, height: 10)
+                        .cornerRadius(15)
+                        .padding()
+                    .foregroundColor(.secondary)
+                    Spacer()
+                }
+                    
+                HStack {
+                    Text(pin.name).font(.title).bold()
+                    Spacer()
+                    MyButtons2(image: "square.and.arrow.up").foregroundColor(.white)
+                    MyButtons2(image: "arrowshape.turn.up.right.circle.fill").foregroundColor(.white)
+                }.padding()
+                   
+                Text(pin.description)
+                    .foregroundColor(.secondary
+                )
+                //Bouton bleus
+                ButtonCollection()
+                .frame(maxWidth: .infinity)
+                .padding()
+                Text("Détails").bold().font(.title)
+                Text(pin.detail).foregroundColor(.secondary)
+                Spacer()
+            }.padding()
 
         }
     }
@@ -36,6 +52,6 @@ struct EditView: View {
 
 struct EditView_Previews: PreviewProvider {
     static var previews: some View {
-        EditView(pin: Pin(name: "", description: "", coordinate: CLLocationCoordinate2D(), image: "", detail: ""), button2: MyButtons2(image: "", legende: ""))
+        EditView(pin: Pin(name: "", description: "", coordinate: CLLocationCoordinate2D(), image: "", detail: ""), button2: MyButtons2(image: ""))
     }
 }

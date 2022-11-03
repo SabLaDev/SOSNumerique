@@ -7,51 +7,78 @@
 
 import SwiftUI
 
-struct LessonListView: View {
-  
-    @State private var searchText = ""
-    var body: some View {
-        NavigationView {
-            
-            List{
-                Section(header:Text("Recommander")){
-                    }
-                    Section(header:Text("Tous les cours")){
-//                        ForEach(Courses.name, id: \.self) { lesson in
-//                            NavigationLink(destination: LessonDetailView(name: lesson)){
-//
-//                                Text(lesson.capitalized)
-                                
-                            }
-                            
-                }
-                        
-            }
-                .searchable(text: $searchText)
-                .navigationTitle("Leçons")
-            }
+struct LessonListDetailView: View {
+   
+    @State private var searchtext: String = ""
+    
+    private var searchresult: [LessonListDetails] {
+        let result = LessonProvider.all()
+        if searchtext.isEmpty{ return result }
+        return result.filter{
+            $0.name.lowercased().contains(searchtext.lowercased())
         }
-    // Filter Lessons
-//    var Lesson : [String] {
-//        let lesson = listOfLessons.map{ $0.lowercased() }
-//        return searchText == "" ? lesson : lesson.filter(){
-//            $0.contains(searchText.lowercased())}
-//    }
+    }
+   
+    
+    var body: some View {
+            
+            List(searchresult) { lessondetails in
+                NavigationLink(destination:{
+                    LessonlistDetailsView( lessondetails: lessondetails )})
+                {
+                        Image(lessondetails.photo)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 45)
+                        .clipShape(Rectangle())
+                         Text(lessondetails.name)
+                        .padding(7)
+                    
+                    
+                }
+            }
+            .navigationTitle("Lesson")
+            .searchable(text: $searchtext)
+    }
+}
 
+struct LessonlistDetailsView: View {
+    let lessondetails: LessonListDetails
+    var body: some View {
+       
+        VStack(alignment: .center){
+                
+            Image(lessondetails.photo)
+            .resizable()
+            .scaledToFit()
+            .clipShape(Rectangle())
+            .frame(height: 300)
 
-//struct Courses: Identifiable {
-//        var id = UUID()
-//        var name : String
-//        var description : String
-//        var video : String
-//        var category : [String]
-//        var quizz : Quizz
-//        var commentList : [Comment]?
-//        var favorite : [Courses] = []
-//}
+            Text(lessondetails.name)
+                .multilineTextAlignment(.center)
+                .bold()
+                .padding()
 
-struct LessonListView_Previews: PreviewProvider {
+            Text(lessondetails.description)
+                .multilineTextAlignment(.center)
+            Spacer()
+            Link(destination: lessondetails.video) {
+                Text("Watch Now")
+                    .bold()
+                    .font(.title2)
+                    .frame(width: 250, height: 50)
+                    .background(Color(.systemBlue))
+                    .foregroundColor(.white)
+                    .cornerRadius(15)
+                
+            }
+
+        }
+           .padding(.all)
+        }
+    }
+struct LessonlistView_Previews: PreviewProvider {
     static var previews: some View {
-        LessonListView()
+        LessonListDetailView()
     }
 }

@@ -6,9 +6,7 @@ Ce projet à été réalisé au sein d'une équipe de quatre personnes.
 
 🎯**Notre challenge :** Rendre la technologie accessible aux exclus du numérique.
 
-🛠**Comment ? :** On a décidé de se focaliser sur une partie des exclus du numérique. 
-
-Celle qui est exclus à cause de manque de formation.
+🛠**Comment ? :** On a décidé de se focaliser sur une partie des exclus du numérique. Celle qui est exclus par manque de formation.
 
 Pour répondre à cette problèmatique, nous avons décidé de créer une application permettant l'accès à du contenu de formation, principalement sous la forme de vidéos.
 
